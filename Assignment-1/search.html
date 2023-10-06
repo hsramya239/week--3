@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Search</title>
+    <style>
+        body{
+            padding: 5px black;
+            text-align: center;
+            border: 5px;
+            width:600px;
+            margin:auto;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        #paragraph{
+           text-align:justify ;
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Text Search</h1>
+
+    <input type="text" id="searchInput" placeholder="Search for a term">
+    <button onclick="searchText()">Search</button>
+
+    <p id="paragraph">
+        Work culture is a collection of attitudes, beliefs and behaviors that make up the regular atmosphere in a work environment . 
+        Healthy workplace cultures align employee behaviors and company policies with the overall goals of the company, while also considering the well-being of individuals.
+        Positive attitudes and positive actions make for a positive workplace culture. Foster collaboration and communication: Leadership and management style that encourages teamwork, open and honest communication is vital to creating a positive feeling in the workplace.
+
+    </p>
+
+    <script>
+        function searchText() {
+            var searchTerm = document.getElementById('searchInput').value;
+            var paragraphText = document.getElementById('paragraph').textContent;
+            var paragraph = document.getElementById('paragraph');
+
+            // Remove previous highlighting
+            paragraph.innerHTML = paragraphText;
+
+            // Use a regular expression with 'gi' flags for case-insensitive search
+            var regex = new RegExp(searchTerm, 'gi');
++
+            // Replace all occurrences of the search term with a highlighted version
+            paragraph.innerHTML = paragraph.innerHTML.replace(regex, function(match) {
+                return '<span class="highlight">' + match + '</span>';
+            });
+        };
+    </script>
+</body>
+</html>
